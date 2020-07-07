@@ -13,7 +13,7 @@ This should be a list of switch hostnames and should have corresponding files ca
 Username and Password failed validation 
 
 ### 2 
-Unable to read switches.data
+Incorrect data read from switches.data
 
 ### 3 
 Unable to read lists of ports 
