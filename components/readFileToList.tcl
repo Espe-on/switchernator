@@ -3,7 +3,5 @@ proc readFileToList {filename} {
     set fileData [read $filePath]
     close $filePath
     set data [split $fileData "\n"]
-    foreach line $data {
-        puts $line
-    }
+    return $data
 }
