@@ -1,19 +1,18 @@
 #!/usr/bin/tclsh
 
-puts "Welcome to $argv0"
+# import block
+source "components/checkArguments.tcl"
 
+#set arguments to variables
 set username [lindex $argv 0] 
 set password [lindex $argv 1]
-set listname [lindex $argv 2]
 
-puts "Please check the following values are correct."
-puts "Username is $username, Password is $password, Listname is $listname"
-puts "Are these values correct? (y/n)" 
-gets stdin areValuesCorrect
-if {$areValuesCorrect != y} {
-    puts "Please re-run script with correct values"
-    exit 1 
-} else {
-    puts "values valid"
+#Main body of program
+proc main {username password } {
+    puts "Welcome to Switchernator"
+    checkArguments $username $password
+    puts "back to main proc"
 }
 
+#Run
+main $username $password
