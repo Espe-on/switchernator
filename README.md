@@ -17,7 +17,15 @@ To run the script navigate into the root diectory of this repo and set the main 
 ```
 $ chmod +x switchernator.tcl 
 ```
-Then run the script with two arguments, first is the username for the switches, second is the password for the switches. Currently different usernames and passwords for the switches are unsupported to discourage people from writing down their credentials in a GitHub repo. 
+The script is run with two arugments, first is the username for the switches, second is the password for the switches.
+
+For example the following command would give a username of "espeon" and a password of "examplepassword": 
+```
+$ ./switchernator.tcl espeon examplepassword
+
+```
+
+ Currently different usernames and passwords for the switches are unsupported to discourage people from writing down their credentials in a GitHub repo. 
 
 The program will look in file ``` data/switches.data ``` to generate a list of switches. Each hostname should be written on a single line in the file.
 
