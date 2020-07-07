@@ -3,6 +3,7 @@
 # import block
 source "components/checkArguments.tcl"
 source "components/readFileToList.tcl"
+source "components/confirmSwitches.tcl"
 
 #Main body of program
 proc main {username password } {

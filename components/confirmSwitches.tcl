@@ -1,4 +1,4 @@
-proc confirmSwitches {listOfSwitches}{
+proc confirmSwitches {listOfSwitches} {
     puts "Please Confirm that you want to update the following network switches"
     foreach switchHostname $listOfSwitches {
         puts $switchHostname
