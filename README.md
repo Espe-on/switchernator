@@ -11,8 +11,6 @@ On Debian these are installed with:
 $ sudo apt-get update && sudo apt-get install tcl tcl-expect
 ```
 ## How to run
-
-
 To run the script navigate into the root diectory of this repo and set the main script to executable:
 ```
 $ chmod +x switchernator.tcl 
@@ -24,7 +22,6 @@ For example the following command would give a username of "espeon" and a passwo
 $ ./switchernator.tcl espeon examplepassword
 
 ```
-
  Currently different usernames and passwords for the switches are unsupported to discourage people from writing down their credentials in a GitHub repo. 
 
 The program will look in file ``` data/switches.data ``` to generate a list of switches. Each hostname should be written on a single line in the file.
@@ -44,14 +41,14 @@ switch3.example
 
 ### Exit Codes
 
-#### 1 
+#### Exit Code: 1
 Username and Password failed validation 
 
-#### 2 
+#### Exit Code: 2
 Incorrect data read from switches.data
 
-#### 3 
+#### Exit Code: 3
 Unable to read lists of ports 
 
-#### 4 
+#### Exit Code: 4
 SSH Error 
