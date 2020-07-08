@@ -1,7 +1,8 @@
 proc confirmSwitches {listOfSwitches} {
     puts "Please Confirm that you want to update the following network switches";
-    foreach switchHostname $listOfSwitches {
-        puts $switchHostname;
+    foreach line $listOfSwitches {
+        set data [split $line "%"];
+        puts "Switch: [lindex $data 0] Ports: [lindex $data 1]\n";
     };
     puts "Are these values correct? (y/n)"
     gets stdin areValuesCorrect

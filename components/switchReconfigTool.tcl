@@ -1,26 +1,28 @@
-proc switchReconfigTool {username password hostname portList vlan} {
-    spawn ssh "$username@$hostname" 
+proc switchReconfigTool {username password hostname switchRange switchportCommand} {
+    spawn ssh "$username@$hostname";
     expect {
         "$username@$hostname's password:"
-        }
-    send "$password\r"
-    puts "password sent"
-    expect "$hostname>"
-    send "enable\r"
-    expect "$hostname#"
-    send "configure\r"
-    expect "$hostname[subst (config)#]"
-    foreach port $portList \{
-        set runningConfigResponse {}
-        send "show running-config interface $port\r"
-        expect {
-            -regexp {..*} {
-                set runningConfigResponse "${accum}$expect_out(0,string)" 
-                exp_continue
-            }
-        }
-        puts "Pre change config for $port on $hostname is: \n $runningConfigResponse"
-        send ""
-        }
-
-}
+        };
+    send "$password\r";
+    puts "password sent";
+    expect "$hostname>";
+    send "enable\r";
+    expect "$hostname#";
+    send "configure\r";
+    expect "$hostname[subst (config)#]";
+    send "$switchRange\r";
+    expect "$hostname[subst (config-if)#]";
+    send "$switchportCommand\r"
+    expect "$hostname[subst (config-if)#]";
+    send "exit\r"
+    expect "$hostname[subst (config)#]";
+    send "exit\r";
+    expect "$hostname#";
+    send "write\r";
+    expect "Are you sure you want to save? (y/n)";
+    send "y\r";
+    expect "$hostname>";
+    send "exit\r";
+    expect "closed";
+    puts "Connection to $hostname closed"
+};

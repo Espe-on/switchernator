@@ -1,3 +1,2 @@
-switchOneHostname
-switchTwoHostname
-switchThreeHostname
+exampleswitchone.place.com%interface range Gi1/0/11,Gi1/0/44%switchport general pvid 1111
+exampleswitchtwo.place.com%interface range Gi1/0/2,Gi1/0/19%switchport general pvid 2222
