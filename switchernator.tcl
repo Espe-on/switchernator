@@ -12,7 +12,13 @@ proc main {username password} {
     checkArguments $username $password
     set listOfSwitches [readFileToList "data/switches.data"]
     confirmSwitches $listOfSwitches;
-    switchReconfigTool $username $password "sw-cllgb401-2.ldn.framestore.com" "interface range Gi1/0/45,Gi1/0/47" "switchport general pvid 2660"
+    foreach line $listOfSwitches {
+        set switchInstructions [split $line "%"];
+        set switchHostname [lindex $switchInstructions 0];
+        set commandOne [lindex $switchInstructions 1];
+        set commandTwo  [lindex $switchInstructions 2];
+        switchReconfigTool $username $password $switchHostname $commandOne $commandTwo
+    }
 }
 
 #Run

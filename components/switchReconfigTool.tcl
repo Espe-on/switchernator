@@ -4,6 +4,9 @@ proc switchReconfigTool {username password hostname switchportRange switchportCo
         -nocase "could not resolve hostname" {
             puts "could not find switch $hostname"
             return}
+        -nocase "Resource temporarily unavailable" {
+             puts "could not reach switch $hostname"
+            return}
         "$username@$hostname's password:" {
             puts "connected to $hostname sucessfully";
         }
