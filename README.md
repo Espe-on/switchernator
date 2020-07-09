@@ -24,20 +24,15 @@ $ ./switchernator.tcl espeon examplepassword
 ```
  Currently different usernames and passwords for the switches are unsupported to discourage people from writing down their credentials in a GitHub repo. 
 
-The program will look in file ``` data/switches.data ``` to generate a list of switches. Each hostname should be written on a single line in the file.
+The program will look in file ``` data/switches.data ``` to generate a list of switches with associated commands. Each hostname should be written on a single line in the file with each of two commands separated by a %.
 
 For example:
 
 ```
 $ cat data/switches.data 
-switch1.example
-switch2.example
-switch3.example
+exampleswitchone.place.com%interface range Gi1/0/11,Gi1/0/44%switchport general pvid 1111
+exampleswitchtwo.place.com%interface range Gi1/0/2,Gi1/0/19%switchport general pvid 2222
 ```
-
- For each entry in ```switches.data``` there should be a file inside of ```data/switches/``` containing the port and destination VLANs for the switch.
-
-
 
 ### Exit Codes
 
