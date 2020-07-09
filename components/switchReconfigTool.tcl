@@ -1,7 +1,12 @@
-proc switchReconfigTool {username password hostname switchRange switchportCommand} {
+proc switchReconfigTool {username password hostname switchportRange switchportCommand} {
     spawn ssh "$username@$hostname";
     expect {
-        "$username@$hostname's password:"
+        -nocase "could not resolve hostname" {
+            puts "could not find switch $hostname"
+            return}
+        "$username@$hostname's password:" {
+            puts "connected to $hostname sucessfully";
+        }
         };
     send "$password\r";
     puts "password sent";
@@ -10,7 +15,8 @@ proc switchReconfigTool {username password hostname switchRange switchportComman
     expect "$hostname#";
     send "configure\r";
     expect "$hostname[subst (config)#]";
-    send "$switchRange\r";
+    puts "Sending $switchportRange"
+    send "$switchportRange\r";
     expect "$hostname[subst (config-if)#]";
     send "$switchportCommand\r"
     expect "$hostname[subst (config-if)#]";
@@ -19,10 +25,11 @@ proc switchReconfigTool {username password hostname switchRange switchportComman
     send "exit\r";
     expect "$hostname#";
     send "write\r";
-    expect "Are you sure you want to save? (y/n)";
+    expect {"Are you sure you want to save? (y/n)";}
     send "y\r";
     expect "$hostname>";
     send "exit\r";
     expect "closed";
-    puts "Connection to $hostname closed"
+    puts "Connection to $hostname closed";
+    return;
 };
